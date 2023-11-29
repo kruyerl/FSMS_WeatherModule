@@ -15,18 +15,14 @@ documentation: https://open-meteo.com/en/docs
 ## Usage
 
 ```
-    import { getWeather } from './GetWeather'
-    import { renderWeather } from './RenderWeather'
+import { getWeatherData } from './GetWeather'
+import { renderWeather } from './RenderWeather'
 
-    getWeather()
-            .then((weatherData) => {
-                    console.log(weatherData)
-                    // Use the data here
-                    let elementID = 'weather_module'
-                    renderWeather(weatherData, elementID)
-            })
-            .catch((err) => {
-                    console.error(err)
-            })
+// to call api use this function to get weather data
+getWeatherData()
+
+// to render react module use this function
+let HTMLID = 'weather_module'
+renderWeather(HTMLID)
 
 ```

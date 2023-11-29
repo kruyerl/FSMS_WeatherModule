@@ -1,9 +1,10 @@
 import { getWeatherData } from './GetWeather'
-import { renderWeather } from './RenderWeather'
-
+import { renderWeatherModuleWithVanillaJS } from './renderWeatherModuleWithVanillaJS'
+import { renderWeather } from './renderWeatherWithReact'
 // to call api use this function
 getWeatherData()
 
 // to render react module use this function
 let HTMLID = 'weather_module'
-renderWeather(HTMLID)
+// renderWeatherModuleWithReact(HTMLID)
+renderWeatherModuleWithVanillaJS(HTMLID)
