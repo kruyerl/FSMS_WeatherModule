@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function getWeather() {
+export async function getWeatherData() {
         const params = {
                 latitude: 43.0299274950116,
                 longitude: -81.15544981534124,
@@ -15,18 +15,22 @@ export function getWeather() {
                 timezone: 'America/New_York',
                 forecast_days: 1,
         }
-
-        return axios
-                .get('https://api.open-meteo.com/v1/forecast?', {
-                        params,
-                })
-                .then(({ data }) => {
-                        return {
-                                current: parseCurrentWeather(data),
-                                daily: parseDailyWeather(data),
-                                hourly: parseHourlyWeather(data),
+        try {
+                const response = await axios.get(
+                        'https://api.open-meteo.com/v1/forecast?',
+                        {
+                                params,
                         }
-                })
+                )
+                return {
+                        current: parseCurrentWeather(response.data),
+                        daily: parseDailyWeather(response.data),
+                        hourly: parseHourlyWeather(response.data),
+                }
+        } catch (error) {
+                // Throw the error to propagate it back to the calling function
+                throw error
+        }
 }
 
 // Parsers for weather
@@ -43,6 +47,7 @@ function parseCurrentWeather({ current, daily }) {
                 humanTime: parseHumanTime(time),
                 currentTemp: Math.round(currentTemp),
                 iconCode,
+                fontAwesomeIcon: parseWeatherCodeIcon(iconCode),
                 humanCode: parseHumanWeatherCode(iconCode),
         }
 }
@@ -65,6 +70,9 @@ function parseHourlyWeather({ hourly, current }) {
                                 timestamp: time * 1000,
                                 humanTime: parseHumanTime(time),
                                 iconCode: hourly.weather_code[index],
+                                fontAwesomeIcon: parseWeatherCodeIcon(
+                                        hourly.weather_code[index]
+                                ),
                                 humanCode: parseHumanWeatherCode(
                                         hourly.weather_code[index]
                                 ),
@@ -104,18 +112,18 @@ function parseHumanWeatherCode(code) {
 function parseWeatherCodeIcon(code) {
         const ICON_MAP = new Map()
 
-        addMapping([0, 1], 'sun', ICON_MAP)
-        addMapping([2], 'cloud-sun', ICON_MAP)
-        addMapping([3], 'cloud', ICON_MAP)
-        addMapping([45, 48], 'fog', ICON_MAP)
-        addMapping([51, 53, 55], 'drizzle', ICON_MAP)
-        addMapping([56, 57], 'freezing_drizzle', ICON_MAP)
-        addMapping([61, 63, 65], 'rain', ICON_MAP)
-        addMapping([66, 67], 'freezing_rain', ICON_MAP)
-        addMapping([71, 72, 73, 77], 'snow', ICON_MAP)
-        addMapping([80, 81, 82], 'showers_rain', ICON_MAP)
-        addMapping([85, 86], 'showers_snow', ICON_MAP)
-        addMapping([95, 96, 99], 'storm', ICON_MAP)
+        addMapping([0, 1], 'fa-sun', ICON_MAP)
+        addMapping([2], 'fa-cloud-sun-rain', ICON_MAP)
+        addMapping([3], 'fa-cloud', ICON_MAP)
+        addMapping([45, 48], 'fa-smog', ICON_MAP)
+        addMapping([51, 53, 55], 'fa-cloud-sun-rain', ICON_MAP)
+        addMapping([56, 57], 'fa-cloud-sun-rain', ICON_MAP)
+        addMapping([61, 63, 65], 'fa-cloud-rain', ICON_MAP)
+        addMapping([66, 67], 'fa-cloud-rain', ICON_MAP)
+        addMapping([71, 72, 73, 77], 'fa-snowflake', ICON_MAP)
+        addMapping([80, 81, 82], 'fa-cloud-showers-heavy', ICON_MAP)
+        addMapping([85, 86], 'fa-snowflake', ICON_MAP)
+        addMapping([95, 96, 99], 'fa-cloud-bolt', ICON_MAP)
 
         return ICON_MAP.get(code)
 }
