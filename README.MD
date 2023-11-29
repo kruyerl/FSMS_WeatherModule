@@ -5,6 +5,12 @@
 The weather api used is Open Meteo
 documentation: https://open-meteo.com/en/docs
 
+## Parsing
+
+The data from the API is sent through a few parsing functions that select format the data for html consumption.
+
+For example the weather codes are run through a map to generate the corresponding fontawesome icon code as well as the corresponding weather name.
+
 ## Scripts
 
 - npm start: uses the parcel bundler to run a live server
@@ -15,14 +21,13 @@ documentation: https://open-meteo.com/en/docs
 ## Usage
 
 ```
-import { getWeatherData } from './GetWeather'
-import { renderWeather } from './RenderWeather'
 
-// to call api use this function to get weather data
+// to call api use this function
 getWeatherData()
 
 // to render react module use this function
 let HTMLID = 'weather_module'
-renderWeather(HTMLID)
+// renderWeatherModuleWithReact(HTMLID)
+renderWeatherModuleWithVanillaJS(HTMLID)
 
 ```

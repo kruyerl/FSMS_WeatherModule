@@ -1,0 +1,1 @@
+function renderWeatherModuleWithVanillaJS(HTMLID) {}
