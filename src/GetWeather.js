@@ -84,8 +84,8 @@ function parseHumanTime(timestamp) {
 
 function parseHumanWeatherCode(code) {
         if (code === 0) return 'clear sky'
-        //
         if (code === 1) return 'mainly clear'
+        //
         if (code === 2) return 'partly cloudy'
         if (code === 3) return 'overcast'
         //
@@ -123,12 +123,4 @@ function parseHumanWeatherCode(code) {
         if (code === 96) return 'thunderstorm'
         if (code === 99) return 'thunderstorm'
         return 'weather unknown'
-}
-
-// Renderers for weather
-
-export function renderWeather(weather, elementID) {
-        console.log(weather)
-        // select parent div for weather
-        const elem = document.getElementById('elementID')
 }
