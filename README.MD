@@ -1,6 +1,6 @@
 # FSMS Weather Module
 
-## Api
+## API
 
 The weather api used is Open Meteo
 documentation: https://open-meteo.com/en/docs
@@ -31,3 +31,8 @@ let HTMLID = 'weather_module'
 renderWeatherModuleWithVanillaJS(HTMLID)
 
 ```
+
+## TODO
+
+- Build a rendering option using vanilla JS
+- Build a vanilla HTML/CSS template and use JS to inject data
