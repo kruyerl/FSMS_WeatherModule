@@ -82,44 +82,46 @@ function parseHumanTime(timestamp) {
 }
 
 function parseHumanWeatherCode(code) {
-        if (code === 0) return 'clear sky'
-        if (code === 1) return 'mainly clear'
-        //
-        if (code === 2) return 'partly cloudy'
-        if (code === 3) return 'overcast'
-        //
-        if (code === 45) return 'fog'
-        if (code === 48) return 'fog'
-        //
-        if (code === 51) return 'drizzle'
-        if (code === 53) return 'drizzle'
-        if (code === 55) return 'drizzle'
-        //
-        if (code === 56) return 'freezing drizzle'
-        if (code === 57) return 'freezing drizzle'
-        //
-        if (code === 61) return 'rain'
-        if (code === 63) return 'rain'
-        if (code === 65) return 'rain'
-        //
-        if (code === 66) return 'freezing rain'
-        if (code === 67) return 'freezing rain'
-        //
-        if (code === 71) return 'snowfall'
-        if (code === 73) return 'snowfall'
-        if (code === 75) return 'snowfall'
-        //
-        if (code === 77) return 'snow grains'
-        //
-        if (code === 80) return 'rain showers'
-        if (code === 81) return 'rain showers'
-        if (code === 82) return 'rain showers'
-        //
-        if (code === 85) return 'snow showers'
-        if (code === 86) return 'snow showers'
-        //
-        if (code === 95) return 'thunderstorm'
-        if (code === 96) return 'thunderstorm'
-        if (code === 99) return 'thunderstorm'
-        return 'weather unknown'
+        const WEATHER_MAP = new Map()
+
+        addMapping([1], 'Clear Sky', WEATHER_MAP)
+        addMapping([1], 'Mainly Clear', WEATHER_MAP)
+        addMapping([2], 'Partly Cloudy', WEATHER_MAP)
+        addMapping([3], 'Overcast', WEATHER_MAP)
+        addMapping([45, 48], 'Fog', WEATHER_MAP)
+        addMapping([51, 53, 55], 'Drizzle', WEATHER_MAP)
+        addMapping([56, 57], 'Freezing Drizzle', WEATHER_MAP)
+        addMapping([61, 63, 65], 'Rain', WEATHER_MAP)
+        addMapping([66, 67], 'Freezing Rain', WEATHER_MAP)
+        addMapping([71, 72, 73, 77], 'Snowfall', WEATHER_MAP)
+        addMapping([80, 81, 82], 'Rain Showers', WEATHER_MAP)
+        addMapping([85, 86], 'Snow Showers', WEATHER_MAP)
+        addMapping([95, 96, 99], 'Thunderstorms', WEATHER_MAP)
+
+        return WEATHER_MAP.get(code)
+}
+
+function parseWeatherCodeIcon(code) {
+        const ICON_MAP = new Map()
+
+        addMapping([0, 1], 'sun', ICON_MAP)
+        addMapping([2], 'cloud-sun', ICON_MAP)
+        addMapping([3], 'cloud', ICON_MAP)
+        addMapping([45, 48], 'fog', ICON_MAP)
+        addMapping([51, 53, 55], 'drizzle', ICON_MAP)
+        addMapping([56, 57], 'freezing_drizzle', ICON_MAP)
+        addMapping([61, 63, 65], 'rain', ICON_MAP)
+        addMapping([66, 67], 'freezing_rain', ICON_MAP)
+        addMapping([71, 72, 73, 77], 'snow', ICON_MAP)
+        addMapping([80, 81, 82], 'showers_rain', ICON_MAP)
+        addMapping([85, 86], 'showers_snow', ICON_MAP)
+        addMapping([95, 96, 99], 'storm', ICON_MAP)
+
+        return ICON_MAP.get(code)
+}
+
+function addMapping(code, value, mapName) {
+        code.forEach((code) => {
+                mapName.set(code, value)
+        })
 }
