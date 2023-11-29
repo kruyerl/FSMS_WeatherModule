@@ -2938,8 +2938,11 @@ process.umask = function() {
 },{}],"8lqZg":[function(require,module,exports) {
 var _getWeather = require("./GetWeather");
 var _renderWeather = require("./RenderWeather");
-// getWeatherData()
-(0, _renderWeather.renderWeather)("weather_module");
+// to call api use this function
+(0, _getWeather.getWeatherData)();
+// to render react module use this function
+let HTMLID = "weather_module";
+(0, _renderWeather.renderWeather)(HTMLID);
 
 },{"./RenderWeather":"8RQvF","./GetWeather":"bY2R5"}],"8RQvF":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4cb2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -34379,6 +34382,9 @@ const StyledContainer = (0, _styledComponentsDefault.default).div`
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        i {
+                margin: auto;
+        }
 `;
 _c = StyledContainer;
 const StyledTempBox = (0, _styledComponentsDefault.default).div`
@@ -34393,16 +34399,11 @@ const Current = ({ data })=>{
     console.log(data);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(StyledContainer, {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {}, void 0, false, {
-                fileName: "src/Components/Current.jsx",
-                lineNumber: 22,
-                columnNumber: 25
-            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("i", {
                 className: `fa-solid ${data.current.fontAwesomeIcon}`
             }, void 0, false, {
                 fileName: "src/Components/Current.jsx",
-                lineNumber: 23,
+                lineNumber: 25,
                 columnNumber: 25
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(StyledTempBox, {
@@ -34414,7 +34415,7 @@ const Current = ({ data })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/Components/Current.jsx",
-                        lineNumber: 27,
+                        lineNumber: 29,
                         columnNumber: 33
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34426,7 +34427,7 @@ const Current = ({ data })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/Components/Current.jsx",
-                                lineNumber: 29,
+                                lineNumber: 31,
                                 columnNumber: 41
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -34436,25 +34437,25 @@ const Current = ({ data })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/Components/Current.jsx",
-                                lineNumber: 30,
+                                lineNumber: 32,
                                 columnNumber: 41
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/Components/Current.jsx",
-                        lineNumber: 28,
+                        lineNumber: 30,
                         columnNumber: 33
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/Components/Current.jsx",
-                lineNumber: 26,
+                lineNumber: 28,
                 columnNumber: 25
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/Components/Current.jsx",
-        lineNumber: 21,
+        lineNumber: 24,
         columnNumber: 17
     }, undefined);
 };
