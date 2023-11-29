@@ -26,13 +26,14 @@ For example the weather codes are run through a map to generate the correspondin
 getWeatherData()
 
 // to render react module use this function
-let HTMLID = 'weather_module'
-// renderWeatherModuleWithReact(HTMLID)
-renderWeatherModuleWithVanillaJS(HTMLID)
+renderWeatherModuleWithReact(HTMLID)
 
 ```
 
-## TODO
+## In Progress
 
 - Build a rendering option using vanilla JS
+
+## TODO
+
 - Build a vanilla HTML/CSS template and use JS to inject data
