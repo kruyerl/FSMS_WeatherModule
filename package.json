@@ -1,29 +1,33 @@
 {
-  "name": "weathermodule",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "npx parcel src/index.html",
-    "build": "npm run clean && npx parcel build src/index.html",
-    "clean": "rimraf ./dist/*"
-  },
-  "author": "kruyerl",
-  "license": "ISC",
-  "devDependencies": {
-    "buffer": "^6.0.3",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "parcel": "^2.10.3",
-    "prettier": "^3.1.0",
-    "process": "^0.11.10",
-    "rimraf": "^5.0.5"
-  },
-  "dependencies": {
-    "axios": "^1.6.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^6.1.1"
-  }
+        "name": "weathermodule",
+        "version": "1.0.0",
+        "description": "",
+        "main": "index.js",
+        "scripts": {
+                "start": "npx parcel src/index.html",
+                "build": "npm run clean && npx parcel build src/index.html",
+                "build_getWeather": "npm run clean && npx parcel build src/GetWeather.js --target default",
+                "clean": "rimraf ./dist/*"
+        },
+        "author": "kruyerl",
+        "license": "ISC",
+        "targets": {
+                "default": {}
+        },
+        "devDependencies": {
+                "buffer": "^6.0.3",
+                "eslint": "^8.54.0",
+                "eslint-config-prettier": "^9.0.0",
+                "eslint-plugin-prettier": "^5.0.1",
+                "parcel": "^2.10.3",
+                "prettier": "^3.1.0",
+                "process": "^0.11.10",
+                "rimraf": "^5.0.5"
+        },
+        "dependencies": {
+                "axios": "^1.6.2",
+                "react": "^18.2.0",
+                "react-dom": "^18.2.0",
+                "styled-components": "^6.1.1"
+        }
 }

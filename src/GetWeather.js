@@ -1,5 +1,4 @@
 import axios from 'axios'
-import './styles.css'
 
 export function getWeather() {
         const params = {
