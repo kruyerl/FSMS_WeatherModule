@@ -54,7 +54,7 @@ function WeatherComponent() {
                                                                         .humanCode
                                                         }
                                                 </h5>
-                                                <p>London Ont</p>
+                                                <p>ITPS Canada</p>
                                                 <Hours data={weatherData} />
                                         </StyledRightColumn>
                                 </StyledContainer>

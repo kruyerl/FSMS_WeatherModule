@@ -16,12 +16,14 @@ export async function getWeatherData() {
                 forecast_days: 1,
         }
         try {
+                // Call Open-Meteo API with Params
                 const response = await axios.get(
                         'https://api.open-meteo.com/v1/forecast?',
                         {
                                 params,
                         }
                 )
+                // Return an object with parsed values for current, daily, hourly
                 return {
                         current: parseCurrentWeather(response.data),
                         daily: parseDailyWeather(response.data),
@@ -35,7 +37,7 @@ export async function getWeatherData() {
 
 // Parsers for weather
 
-function parseCurrentWeather({ current, daily }) {
+function parseCurrentWeather({ current }) {
         const {
                 temperature_2m: currentTemp,
                 weather_code: iconCode,
@@ -68,7 +70,7 @@ function parseHourlyWeather({ hourly, current }) {
                 .map((time, index) => {
                         return {
                                 timestamp: time * 1000,
-                                humanTime: parseHumanTime(time),
+                                humanTime: parseHumanTime(time, false),
                                 iconCode: hourly.weather_code[index],
                                 fontAwesomeIcon: parseWeatherCodeIcon(
                                         hourly.weather_code[index]
@@ -84,9 +86,17 @@ function parseHourlyWeather({ hourly, current }) {
                 .filter(({ timestamp }) => timestamp >= current.time * 1000)
 }
 
-function parseHumanTime(timestamp) {
+function parseHumanTime(timestamp, timeformat24hours) {
         let date = new Date(timestamp * 1000)
-        return date.getHours()
+        let hour = date.getHours()
+        let ampm = hour >= 12 ? 'pm' : 'am'
+
+        if (!timeformat24hours) {
+                // Convert to 12-hour format
+                hour = hour % 12 || 12 // Handle midnight (12:00)
+        }
+
+        return hour + ampm
 }
 
 function parseHumanWeatherCode(code) {

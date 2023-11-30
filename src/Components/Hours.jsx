@@ -24,7 +24,7 @@ const Hours = ({ data }) => {
                                                 <i
                                                         className={`fa-solid ${hour.fontAwesomeIcon}`}
                                                 ></i>
-                                                <p>{hour.humanTime}°</p>
+                                                <p>{hour.humanTime}</p>
                                         </StyledHour>
                                 )
                         })}
