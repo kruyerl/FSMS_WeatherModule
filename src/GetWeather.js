@@ -84,6 +84,7 @@ function parseHourlyWeather({ hourly, current }) {
                         }
                 })
                 .filter(({ timestamp }) => timestamp >= current.time * 1000)
+		.slice(0, 4)
 }
 
 function parseHumanTime(timestamp, timeformat24hours) {
